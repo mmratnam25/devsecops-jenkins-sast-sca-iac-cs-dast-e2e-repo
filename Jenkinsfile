@@ -4,14 +4,14 @@ pipeline {
     maven 'Maven'
   }
 
-  stages {
+  stages{
     stage('CompileandRunSonarAnalysis') {
-      steps {
-        /ithCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
-          bat("mvn -Dmaven.test.failure.ignore verify sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=mmratnamwebapp1 -Dsonar.host.url=http://localhost:9000/")
-        }
-      }
+            steps {	
+		bat 'mvn clean verify sonar:sonar -Dsonar.projectKey=mmratnamwebapp1 -Dsonar.organization=mmratnam -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=41e1f2e5282b9ba08c8d51eabc4d7ddde2aebe86'
+			}
     }
+   }
+}
     /*stage('Build') {
       steps {
         withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
@@ -52,6 +52,6 @@ pipeline {
         bat("checkov -s -f main.tf")
       }
     }
-*/
+
   }
-}
+}*/

@@ -12,6 +12,13 @@ pipeline {
     }
    }
 }
+stage('RunContainerScan') {
+      steps {
+        withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
+          bat 'mvn synk:test -fn'
+        }
+      }
+    }
     /*stage('Build') {
       steps {
         withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {

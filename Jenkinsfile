@@ -13,7 +13,7 @@ pipeline {
 	stage('RunContainerScan') {
      	 	steps {
         			withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
-          			bat 'mvn synk:test -fn'
+          			bat 'mvn snyk:test -fn'
         }
       }
     }

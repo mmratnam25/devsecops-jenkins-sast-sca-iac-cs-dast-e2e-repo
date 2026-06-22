@@ -10,16 +10,16 @@ pipeline {
 		bat 'mvn clean verify sonar:sonar -Dsonar.projectKey=mmratnam25-mmratnamwebapp1 -Dsonar.organization=mmratnam25 -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=41e1f2e5282b9ba08c8d51eabc4d7ddde2aebe86'
 			}
     }
-   }
-}
-stage('RunContainerScan') {
-      steps {
-        withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
-          bat 'mvn synk:test -fn'
+	stage('RunContainerScan') {
+     	 	steps {
+        			withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
+          			bat 'mvn synk:test -fn'
         }
       }
     }
-    /*stage('Build') {
+   }
+}
+ /*stage('Build') {
       steps {
         withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
           script {
